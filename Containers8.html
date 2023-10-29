@@ -12,6 +12,7 @@
 		<meta http-equiv='Cache-Control' content='no-cache'>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript">
+			// Percorre nós filhos
 			function filhos(obj){
 				for( item in obj.childNodes ) { 
 					if( obj.childNodes[item].nodeType == 1 ){
@@ -19,6 +20,7 @@
 						}
 					}
 				}
+			// Função init()
 			function init(){
 				const doc = window.document;
 				filhos(doc);
