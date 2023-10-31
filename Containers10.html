@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title>&bull; Containers &bull;</title>
+		<meta charset="utf-8">
+		<meta name='copyright' content="JScript">
+		<meta name="description" content="Containers">
+		<meta name="keywords" content="HTML5, CSS3, Tags, Meta, Title, Section, Div, P, Web">
+		<meta name="author" content="Bernardo">
+		<meta name="googlebot" content="noindex">
+		<meta name="bingbot" content="noindex">
+		<meta http-equiv='Expires' content='0'>
+		<meta http-equiv='Cache-Control' content='no-cache'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript">
+			var sHtml = "";
+			function filhos(obj){
+				for( item in obj.childNodes ) { 
+					if( obj.childNodes[item].nodeType == 1 ){
+						console.log(obj.childNodes[item].nodeType+" - "+obj.childNodes[item]+" - "+obj.childNodes[item].id);
+						// Monta o HTML
+						sHtml += obj.childNodes[item].nodeType+" - "+obj.childNodes[item]+" - "+obj.childNodes[item].id + "<br>";
+						filhos(obj.childNodes[item]);
+						}
+					}
+					return sHtml;
+				}
+			function init(){
+				const doc = window.document;
+				var txt = filhos(doc);
+				// 1 - Achar o container pela sua IDentidade
+				const divResp = document.getElementById("resposta");
+				// 2 - Substituir o conteúdo HTML interno do container
+				divResp.innerHTML = txt;
+				}
+		</script>
+	</head>
+	
+	<body onload="init();">
+		<h1>Documento HTML - DOM</h1>
+		<h2>Seção 1 - SECTION</h2>
+		<section id="s1">
+			<h3>Seção 1 - Divisão 1 - DIV</h3>
+			<div id="s1d1">
+				<p id="s1d1p1">
+					Parágrafo 1 da DIV 1 da Seção 1
+				</p>
+				<p id="s1d1p2">
+					Parágrafo 2 da DIV 1 da Seção 1
+				</p>
+			</div>
+			<h3>Seção 1 - Divisão 2 - DIV</h3>
+			<div id="s1d2">
+				<p id="s1d2p1">
+					Parágrafo 1 da DIV 2 da Seção 1
+				</p>
+				<p id="s1d2p2">
+					Parágrafo 2 da DIV 2 da Seção 1
+				</p>
+			</div>
+		</section>
+		<h1>Listagem</h1>
+		<div id="resposta">
+		
+		</div>
+	</body>
+</html>
