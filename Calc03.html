@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>&bull; Calculadora &bull;</title>
+		<meta charset="utf-8">
+		<meta name='copyright' content="JScript">
+		<meta name="description" content="Containers">
+		<meta name="keywords" content="HTML5, CSS3, Tags, Meta, Title, Section, Div, P, Web">
+		<meta name="author" content="Bernardo">
+		<meta name="googlebot" content="noindex">
+		<meta name="bingbot" content="noindex">
+		<meta http-equiv='Expires' content='0'>
+		<meta http-equiv='Cache-Control' content='no-cache'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			BODY {
+				font-family: Arial;
+				font-size: 36px;
+				}
+			INPUT {
+				font-size: 28px;
+				}
+			TD {
+				font-size: 28px;
+				}
+		</style>
+		<script type="text/javascript">
+			var doc = null;
+			// Objetos DOM
+			var oFat1 = null;
+			var oFat2 = null;
+			// Fatores em formato numérico
+			var nFat1 = 0;
+			var nFat2 = 0;
+			// Executa qualquer operação com 2 fatores 
+			function operacao(sOperacao){
+				console.log(oFat1);
+				console.log(oFat2);
+				// NOVO - Extrai valores numéricos
+				nFat1 = oFat1.innerText;
+				nFat2 = oFat2.innerText;
+				console.log(nFat1);
+				console.log(nFat2);				
+				}
+			function init(){
+				doc = window.document;
+				// Objetos DOM
+				oFat1 = doc.getElementById("tFat1"); 
+				oFat2 = doc.getElementById("tFat2");
+				console.log(oFat1);
+				console.log(oFat2);
+				}
+		</script>
+	</head>
+	
+	<body onload="init();">
+		<center>
+			<h4>CALCULADORA</h4>
+			<table width="20%" border=1 cellspacing=0>
+				<tr><td width="50%">Resultado:</td><td id="tResult"></td></tr>
+				<tr><td>Fator 1:</td><td id="tFat1"  contenteditable="true"></td></tr>
+				<tr><td>Fator 2:</td><td id="tFat2"  contenteditable="true"></td></tr>
+				<tr>
+					<td colspan=2>
+						<input type=button value="+" onclick="operacao('+')">
+						<input type=button value="-" onclick="operacao('-')">
+						<input type=button value="*" onclick="operacao('*')">
+						<input type=button value="/" onclick="operacao('/')">
+						<input type=button value="%" onclick="operacao('%')">
+					</td>
+				</tr>
+			</table>
+		</center>
+	</body>
+</html>
