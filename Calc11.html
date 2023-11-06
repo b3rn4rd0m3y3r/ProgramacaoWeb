@@ -1,0 +1,206 @@
+<html>
+	<head>
+		<title>&bull; Calculadora &bull;</title>
+		<meta charset="utf-8">
+		<meta name='copyright' content="JScript">
+		<meta name="description" content="Containers">
+		<meta name="keywords" content="HTML5, CSS3, Tags, Meta, Title, Section, Div, P, Web">
+		<meta name="author" content="Bernardo">
+		<meta name="googlebot" content="noindex">
+		<meta name="bingbot" content="noindex">
+		<meta http-equiv='Expires' content='0'>
+		<meta http-equiv='Cache-Control' content='no-cache'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			BODY {
+				font-family: Arial;
+				font-size: 36px;
+				}
+			BUTTON.ope {
+				background-color: steelblue;
+				color: yellow;
+				font-size: 28px;
+				height: 100%;
+				text-shadow: black 2px 2px;
+				width: 100%;
+				}
+			BUTTON.dig {
+				background-color: teal;
+				color: yellow;
+				font-size: 28px;
+				height: 100%;
+				text-shadow: black 2px 2px;
+				width: 100%;
+				}
+			BUTTON.dig.pt {
+				background-color: steelblue;
+				font-size: 36px;
+				}
+			INPUT {
+				font-size: 28px;
+				margin: 0px;
+				}
+			INPUT.op {
+				background-color: lightblue;
+				height: 40px;
+				margin: 0px;
+				max-width: 10%;
+				min-width: 10%;
+				}
+			INPUT.exec {
+				background-color: red;
+				color: yellow;
+				font-size: 24px;
+				height: 40px;
+				margin: 0px;
+				max-width: 10%;
+				min-width: 10%;
+				}
+			INPUT.exec.ce {
+				font-size: 24px;
+				max-width: 13%;
+				min-width: 13%;
+				}
+			TD {
+				font-size: 28px;
+				}
+			TD#tResult {
+				font-size: 40px;
+				}
+			TEXTAREA {
+				font-size: 20px;
+				}
+		</style>
+		<script type="text/javascript">
+			var doc = null;
+			// Objetos DOM
+			var oFat1 = null;
+			var oFat2 = null;
+			// Resultado no DOM
+			var oResult = null;
+			// NOVO - Historico
+			var historico = null;
+			var TEKLA = "";
+			// NOVO - Operações unitárias sobre o resultado
+			function inverso(){
+				var operac = "1/" + oResult.innerText;
+				oHistorico.value = operac + " = " + eval(operac) + "\n" + oHistorico.value;
+				oResult.innerText = eval(operac);
+				}
+			function raiz2(){
+				var operac = "Math.sqrt(" + oResult.innerText + ")";
+				oHistorico.value = operac + " = " + eval(operac) + "\n" + oHistorico.value;
+				oResult.innerText = eval(operac);
+				}
+			function raiz3(){
+				var operac = "Math.cbrt(" + oResult.innerText + ")";
+				oHistorico.value = operac + " = " + eval(operac) + "\n" + oHistorico.value;
+				oResult.innerText = eval(operac);
+				}
+			// Executa qualquer operação com 2 fatores 
+			// Backspace
+			function bkspc(){
+				if( oResult.innerText != "" ){
+					oResult.innerText = ((oResult.innerText).substr(0,(oResult.innerText).length-1));
+					}
+				}			
+			function limpa(){
+				oResult.innerText = "";
+				}
+			// NOVO - Alterada para histórico
+			function exec(){
+				var operac = oResult.innerText;
+				if( oResult.innerText != "" ){
+					oResult.innerText = eval(operac);
+					oHistorico.value = operac + " = " + oResult.innerText + "\n" + oHistorico.value;
+					limpa();
+					}
+				}
+			// Registra a tecla pressionada na área de operação
+			function teclaPress(vTecla){
+				oResult.innerText = oResult.innerText + vTecla;
+				}
+			function init(){
+				// Objeto document
+				doc = window.document;
+				// Objetos DOM
+				// NOVO - Historico das operações
+				oHistorico = doc.getElementById("historico"); 
+				// Resultado no DOM
+				oResult = doc.getElementById("tResult");
+				// Define o evento onclick de todos os botões numéricos e de operadores
+				var botoes = document.querySelectorAll('button.dig, input.op');
+				for(var i = 0; i < botoes.length; i++) {
+					var botao = botoes[i];
+					botao.onclick = function(e) {
+						TEKLA = e.target.innerText != '' ? e.target.innerText : e.target.value;
+						teclaPress(TEKLA);
+					}
+				}				
+				}
+		</script>
+	</head>
+	
+	<body onload="init();">
+		<center>
+			<h3>CALCULADORA</h3>
+			<table width="30%" height="60%" border=1 cellspacing=0>
+				<tr height="10%"><td colspan=2 id="tResult"></td></tr>
+				<tr height="20%">
+					<td colspan=2>
+						<textarea cols=50 rows=4 id="historico"></textarea>
+					</td>
+				</tr>
+				
+				<tr height="8%">
+					<td colspan=2 width=100% valign=top>
+						<input  class="op" type=button value="+">
+						<input  class="op" type=button value="-">
+						<input  class="op" type=button value="*">
+						<input  class="op" type=button value="/">
+						<input  class="op" type=button value="%">
+						<input  class="exec" type=button value="=" onclick="exec()">
+						<input  class="exec ce" type=button value="CE" onclick="limpa()">
+						<input  class="exec" type=button value="&larr;" onclick="bkspc()">
+					</td>
+				</tr>
+				<tr height="40%">
+					<td colspan=2>
+						<table width="100%"  height="100%" border=0 cellspacing=0>
+							<tr>
+								<td width="33%"><button class="ope" id="bg" onclick="raiz2();">&radic;</button></td>
+								<td width="33%"><button class="ope" id="bh" onclick="raiz3();">&#8731;</button></td>
+								<td width="33%"><button class="ope" id="bi" onclick="inverso();">&#x215F;</button></td>
+							</tr>
+							<tr>
+								<td width="33%"><button class="dig" id="bd">(</button></td>
+								<td width="33%"><button class="dig" id="be">000</button></td>
+								<td width="33%"><button class="dig" id="bf">)</button></td>
+							</tr>
+							<tr>
+								<td width="33%"><button class="dig" id="b1">1</button></td>
+								<td width="33%"><button class="dig" id="b2">2</button></td>
+								<td width="33%"><button class="dig" id="b3">3</button></td>
+							</tr>
+							<tr>
+								<td><button class="dig" id="b4">4</button></td>
+								<td><button class="dig" id="b5">5</button></td>
+								<td><button class="dig" id="b6">6</button></td>
+							</tr>
+							<tr>
+								<td><button class="dig" id="b7">7</button></td>
+								<td><button class="dig" id="b8">8</button></td>
+								<td><button class="dig" id="b9">9</button></td>
+							</tr>
+							<tr>
+								<td><button class="dig" id="ba">0</button></td>
+								<td><button class="dig pt" id="bb">.</button></td>
+								<td><button class="dig" id="bc">00</button></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</center>
+	</body>
+</html>
