@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>&bull; Table05 &bull;</title>
+		<meta charset="utf-8">
+		<meta name='copyright' content="JScript">
+		<meta name="description" content="Containers">
+		<meta name="keywords" content="HTML5, CSS3, Web, individualiza o cálculo por coluna">
+		<meta name="author" content="Bernardo">
+		<meta name="googlebot" content="noindex">
+		<meta name="bingbot" content="noindex">
+		<meta http-equiv='Expires' content='0'>
+		<meta http-equiv='Cache-Control' content='no-cache'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script>
+			var tb1 = null;
+			// Variáveis de nó de apoio
+			var lin = null;
+			var cel = null;
+			const MAX_LINS = 10;
+			const MAX_COLS = 5;
+			// NOVO - Função da linha e cálculos por coluna
+			function calcLin(vLin, vCol){
+				switch(vCol) {
+					case 1:
+						cel.innerText = String(vLin);
+						break;
+					case 2:
+						cel.innerText = String(vLin*2);
+						break;
+					case 3:
+						cel.innerText = String(vLin*3);
+						break;
+					case 4:
+						cel.innerText = String(vLin*vLin);
+						break;
+					case 5:
+						cel.innerText = String(vLin*vLin*vLin);
+						break;
+					default:
+						// code block
+						cel.innerText = String(vLin)+"_"+String(vCol);
+					}				
+				}
+			function criaCelula(vLin){
+				return vLin.insertCell();
+				}
+			function criaLinha(vTb){
+				return vTb.insertRow();
+				}
+			function init(){
+				tb1 = document.getElementById("tb1");
+				for(linhas=1;linhas <=MAX_LINS;linhas++){
+					// Cria uma linha na tabela
+					lin = criaLinha(tb1);
+					// Cria uma célula numerada nesta linha
+					cel = criaCelula(lin);
+					cel.id = "c0_"+String(linhas);
+					cel.align = "right";
+					cel.innerText = String(linhas);
+					// Cria mais células nesta linha
+					for(colunas=1;colunas<=MAX_COLS;colunas++){
+						cel = criaCelula(lin);
+						cel.align = "right";
+						cel.id = "c"+String(linhas)+"_"+String(colunas);
+						calcLin(linhas, colunas);
+						}
+					}
+				}
+		</script>
+	</head>
+	<body onload="init();">
+		<table id="tb1" border=1 width=10% cellspacing=0 cellpadding=4>
+		</table>
+	</body>
+</html>

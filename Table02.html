@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>&bull; Table02 &bull;</title>
+		<meta charset="utf-8">
+		<meta name='copyright' content="JScript">
+		<meta name="description" content="Containers">
+		<meta name="keywords" content="HTML5, CSS3, Web, criaLinha, criaCelula">
+		<meta name="author" content="Bernardo">
+		<meta name="googlebot" content="noindex">
+		<meta name="bingbot" content="noindex">
+		<meta http-equiv='Expires' content='0'>
+		<meta http-equiv='Cache-Control' content='no-cache'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script>
+			var tb1 = null;
+			// NOVO - Cria uma célula: primeira filha ou adjacente
+			function criaCelula(vLin){
+				return vLin.insertCell();
+				}
+			// NOVO - Cria uma linha abaixo da última existente
+			function criaLinha(vTb){
+				return vTb.insertRow();
+				}
+			function init(){
+				tb1 = document.getElementById("tb1");
+				// Cria uma linha na tabela
+				var lin = criaLinha(tb1);
+				// Cria uma célula nesta linha
+				var cel = criaCelula(lin);
+				cel.id = "c0_1";
+				cel.align = "right";
+				cel.innerText = "1";
+				// Cria mais uma célula nesta linha				
+				cel = criaCelula(lin);
+				cel.id = "c1_1";
+				cel.innerText = "C1_1";
+				// Cria mais uma célula nesta linha
+				cel = criaCelula(lin);
+				cel.innerText = "C1_2";
+				cel.id = "c1_2";
+				}
+		</script>
+	</head>
+	<body onload="init();">
+		<table id="tb1" border=1 width=10% cellspacing=0 cellpadding=4>
+		</table>
+	</body>
+</html>
