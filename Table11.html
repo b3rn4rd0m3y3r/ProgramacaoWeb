@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>&bull; Table09 &bull;</title>
+		<title>&bull; Table011 &bull;</title>
 		<meta charset="utf-8">
 		<meta name='copyright' content="JScript">
 		<meta name="description" content="Containers">
@@ -21,10 +21,14 @@
 			var lin = null;
 			var cel = null;
 			const MAX_LINS = 7;
-			const MAX_COLS = 2;
+			const MAX_COLS = 6; // ALTERADO
 			// NOVO - Parâmetros financiamento
 			const VALOR_VEICULO = 70000;
 			const TAXA_JUROS = 12; // porcento
+			const ALIQ_IPVA = 4; // Acrescentado. Maior percentual nacional => 4%
+			const VALOR_SEGURO = 2250; // Anual
+			const VALOR_REVISAO = 900; // Anual
+			const GASTO_GASOLINA = 300; // Mes
 			// HTML
 			var sHtml = "";
 			function filhos(obj){
@@ -38,7 +42,7 @@
 					}
 					return sHtml;
 				}
-			// NOVO - Lista nós
+			// Lista nós
 			function listNodes(vNo){
 				var oNo = document.getElementById(vNo);
 				var txt = filhos(oNo);
@@ -53,20 +57,30 @@
 				var juroTotal = (1+TAXA_JUROS/100*anos);
 				switch(vCol) {
 					case 1:
-						// NOVO - Relaciona os meses a partir de 24
+						// Relaciona os meses a partir de 24
 						cel.innerText = String(vLin*12+12); // No de meses
 						break;
 					case 2:
 						cel.innerText = String(parseFloat(juroTotal*VALOR_VEICULO).toFixed(2));
 						break;
 					case 3:
-						cel.innerText = String(vLin*3);
+						var VrIpva = VALOR_VEICULO * ALIQ_IPVA/100 * anos;
+						cel.innerText = String(VrIpva);
 						break;
 					case 4:
-						cel.innerText = String(vLin*vLin);
+						// NOVO - Seguro
+						var VrSeg = VALOR_SEGURO * anos;
+						cel.innerText = String(VrSeg);
 						break;
 					case 5:
-						cel.innerText = String(vLin*vLin*vLin);
+						// NOVO - Revisão
+						var VrRev = VALOR_REVISAO * anos;
+						cel.innerText = String(VrRev);
+						break;
+					case 6:
+						// NOVO - Gasolina
+						var VrComb = GASTO_GASOLINA * 12 * anos;
+						cel.innerText = String(VrComb);
 						break;
 					default:
 						// code block
@@ -83,7 +97,7 @@
 				tb1 = document.getElementById("tb1");
 				// Cria uma linha na tabela
 				lin = criaLinha(tb1);
-				// Cria cabe�alhos de colunas
+				// Cria cabeçalhos de colunas
 				for(colunas=0;colunas<=MAX_COLS;colunas++){
 					cel = criaCelula(lin);
 					cel.align = "center";
@@ -93,12 +107,12 @@
 				for(linhas=1;linhas <=MAX_LINS;linhas++){
 					// Cria uma linha na tabela
 					lin = criaLinha(tb1);
-					// Cria uma c�lula numerada nesta linha
+					// Cria uma célula numerada nesta linha
 					cel = criaCelula(lin);
 					cel.id = "c0_"+String(linhas);
 					cel.align = "right";
 					cel.innerText = String(linhas);
-					// Cria mais c�lulas nesta linha
+					// Cria mais células nesta linha
 					for(colunas=1;colunas<=MAX_COLS;colunas++){
 						cel = criaCelula(lin);
 						cel.align = "right";

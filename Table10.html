@@ -39,7 +39,7 @@
 					}
 					return sHtml;
 				}
-			// Lista nÛs
+			// Lista n√≥s
 			function listNodes(vNo){
 				var oNo = document.getElementById(vNo);
 				var txt = filhos(oNo);
@@ -47,11 +47,11 @@
 				var oLst = document.getElementById("lista");
 				oLst.innerHTML = txt;
 				}
-			// FunÁ„o da linha e c·lculos por coluna
+			// Fun√ß√£o da linha e c√°lculos por coluna
 			function calcLin(vLin, vCol){
-				// NOVO - Par‚metros calculados
+				// NOVO - Par√¢metros calculados
 				var anos = ((vLin*12+12)/12);
-				var juroTotal = (1+TAXA_JUROS/100)*anos;
+				var juroTotal = (1+TAXA_JUROS/100*anos);
 				switch(vCol) {
 					case 1:
 						// NOVO - Relaciona os meses a partir de 24
