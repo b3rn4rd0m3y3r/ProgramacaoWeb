@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>FrmPHP02</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<meta charset="iso-8859-1"/>
+		<meta name="author" content="Bernardo Meyer">
+		<meta name="description" content="Formulários II - Check de requerido e padrão de entrada.">
+		<meta name="keywords" content="sites, web, desenvolvimento, HTML5">
+		<style>
+			FORM {
+				display: grid;
+				font-size: 24px;
+				width: 60%;
+				}
+		</style>
+	</head>
+	<body>
+		<center>
+			<h1>LOGIN</h1>
+			<form method="post"  accept-charset="UTF-8" action="auth.php">
+				Id (email, apelido, DDDtelefone): <input name="inpUser" id="inpUser" required pattern="^([0-9A-Za-z]{6})|([0-9]{11})|([A-Za-z0-9._\+\-]+@[a-z0-9.\-]+\.[a-z]{2,3})$"><br>
+				Senha (sem espa&ccedil;os):<input type="password" name="inpSenha" id="inpSenha" required pattern="^([0-9A-Za-z,@#\$%_\+\-]{1,14})$"><br>
+				<input type="submit" value="Envia">
+			</form>
+		</center>
+	</body>
+</html>
